@@ -53,12 +53,18 @@ with TypeSafeClient() as client:
 
 response_time_ms = (time.perf_counter() - stopwatch_start) * 1000
 
+answer_collections = {
+    "choice": response.choices,
+    "score": response.scores,
+    "noul": response.nouls,
+}
+
 for name, question in state_config["questions"].items():
-    if question["type"] == "choice":
-        answer = response.choices[name]
-        print(f"{name}: {answer.choice} (confidence {answer.confidence})")
-    elif question["type"] == "score":
-        print(f"{name}: {response.scores[name].score}")
-    else:
-        print(f"{name}: {response.nouls[name].noul}")
+    question_type = question["type"]
+    answer = answer_collections[question_type][name]
+    value = getattr(answer, question_type)
+    output = f"{name}: {value}"
+    if question_type == "choice":
+        output += f" (confidence {answer.confidence})"
+    print(output)
 print(f"response:    {response_time_ms:.0f} ms")

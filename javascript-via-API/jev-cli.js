@@ -85,7 +85,10 @@ fs.writeFileSync(
 );
 
 // Print the model's response to the console for easy viewing
-console.log(`model:       ${model}`);
+
+console.log("= = = = = = = = = = = = =");
+console.log("Jev's Response");
+console.log("- - - - - - - - - - - - -");
 for (const [name, question] of Object.entries(questions)) {
   const answer = answers[name];
   if (question.type === "choice") {
@@ -96,5 +99,11 @@ for (const [name, question] of Object.entries(questions)) {
     console.log(`${name}: ${answer.noul}`);
   }
 }
+console.log("\n");
+console.log("= = = = = = = = = = = = =");
+console.log("System Information");
+console.log("- - - - - - - - - - - - -");
+console.log(`model:       ${model}`);
 console.log(`usage:       ${usage.input_tokens} in / ${usage.output_tokens} out`);
 console.log(`response:    ${responseTimeMs.toFixed(0)} ms`);
+console.log("\n");

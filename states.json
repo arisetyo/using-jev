@@ -75,5 +75,46 @@
         }
       }
     }
+  },
+  {
+    "state": {
+      "source_context": "The water cycle describes how water moves between Earth's surface and the atmosphere.",
+      "question": "Which process changes liquid water into water vapor?",
+      "options": {
+        "A": "Condensation",
+        "B": "Evaporation",
+        "C": "Precipitation",
+        "D": "Collection"
+      },
+      "correct_answer": "B",
+      "explanation": "Evaporation is the process in which liquid water gains energy and changes into water vapor."
+    },
+    "questions": {
+      "is_ready": {
+        "type": "noul",
+        "instructions": "Is this quiz item good enough to show to a user? It should be factually correct, have one clearly best answer, contain plausible but distinct distractors, and have an explanation that supports the answer without introducing errors."
+      },
+      "quality": {
+        "type": "score",
+        "instructions": "How would you rate the overall quality of this generated quiz item for a user?",
+        "criteria": [
+          "Unacceptable: incorrect, ambiguous, or missing essential information",
+          "Needs revision: mostly usable but has a meaningful correctness, clarity, or explanation problem",
+          "Good: correct and clear with only minor possible improvements",
+          "Excellent: correct, unambiguous, well-written, and pedagogically useful"
+        ]
+      },
+      "primary_issue": {
+        "type": "choice",
+        "instructions": "What is the most important quality outcome for this quiz item?",
+        "criteria": {
+          "pass": "The question, options, answer, and explanation are all suitable for the user",
+          "correctness": "The answer or explanation has a factual problem",
+          "ambiguity": "More than one option could reasonably be correct or the question is unclear",
+          "distractors": "One or more incorrect options are implausible, overlapping, or misleading",
+          "explanation": "The explanation is missing, unsupported, or does not explain the answer"
+        }
+      }
+    }
   }
 ]
