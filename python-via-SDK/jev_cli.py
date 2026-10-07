@@ -62,9 +62,14 @@ answer_collections = {
 for name, question in state_config["questions"].items():
     question_type = question["type"]
     answer = answer_collections[question_type][name]
-    value = getattr(answer, question_type)
-    output = f"{name}: {value}"
-    if question_type == "choice":
+    if question_type == "noul":
+        output = f"{name}: {answer.noul:.0%}"
+    elif question_type == "score":
+        score_index, _ = max(answer.probabilities.items(), key=lambda item: item[1])
+        legend = answer.legend.get(str(score_index), answer.legend.get(score_index))
+        output = f"{name}: {legend}"
+    else:
+        output = f"{name}: {answer.choice}"
         output += f" (confidence {answer.confidence})"
     print(output)
 print(f"response:    {response_time_ms:.0f} ms")

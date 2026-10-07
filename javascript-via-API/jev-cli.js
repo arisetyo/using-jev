@@ -91,12 +91,18 @@ console.log("Jev's Response");
 console.log("- - - - - - - - - - - - -");
 for (const [name, question] of Object.entries(questions)) {
   const answer = answers[name];
-  if (question.type === "choice") {
-    console.log(`${name}: ${answer.choice} (confidence ${answer.confidence})`);
+  if (question.type === "noul") {
+    console.log(`${name}: ${(answer.noul * 100).toFixed(0)}%`);
   } else if (question.type === "score") {
-    console.log(`${name}: ${answer.score}`);
+    const [scoreIndex] = Object.entries(answer.probabilities).reduce(
+      (best, current) => (current[1] > best[1] ? current : best),
+    );
+    console.log(
+      `${name}: ${answer.legend[scoreIndex]} ` +
+        `(score ${answer.score}, confidence ${answer.confidence})`,
+    );
   } else {
-    console.log(`${name}: ${answer.noul}`);
+    console.log(`${name}: ${answer.choice} (confidence ${answer.confidence})`);
   }
 }
 console.log("\n");
