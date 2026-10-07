@@ -17,3 +17,4 @@ logs/
 *.log
 */*.log
 **/*.log
+javascript-via-API/response.log
