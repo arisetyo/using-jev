@@ -21,20 +21,20 @@ Keep `.env` private and do not commit the API key.
 
 ## JavaScript
 
-The JavaScript example uses Node's built-in `fetch` and `--env-file`; no npm
-dependencies are required.
+The JavaScript example uses Node's built-in `fetch` and `dotenv`.
 
 From the repository root:
 
 ```sh
 cd javascript-via-API
-node --env-file=../.env jev-cli.js
+npm install
+node jev-cli.js
 ```
 
-Pass a custom message as a quoted argument:
+The JavaScript example analyzes the first state in `states.json`.
 
 ```sh
-node --env-file=../.env jev-cli.js "I was charged twice for my subscription."
+node jev-cli.js
 ```
 
 ## Python
@@ -47,14 +47,17 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
 
-Run the example:
+Run the first state in `states.json`:
 
 ```sh
 .venv/bin/python jev_cli.py
 ```
 
-Pass a custom message as a quoted argument:
+Select a different state with its zero-based index:
 
 ```sh
-.venv/bin/python jev_cli.py "I was charged twice for my subscription."
+.venv/bin/python jev_cli.py 1
 ```
+
+The state index defaults to `0`. Add more state objects to the root
+`states.json` file to make additional indices available.

@@ -2,6 +2,7 @@
 
 # JavaScript dependencies
 node_modules/
+*/node_modules/
 
 # Python virtual environments and caches
 .venv/
