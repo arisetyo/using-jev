@@ -25,5 +25,55 @@
         "instructions": "The message conveys urgency or time-sensitivity"
       }
     }
+  },
+  {
+    "state": {
+      "band": {
+        "name": "The Midnight Signals",
+        "genre": "Indie rock",
+        "sound": "Atmospheric guitar-driven songs with steady drums, warm synths, and reflective lyrics",
+        "sample_tracks": [
+          "Neon Weather",
+          "After the Last Train",
+          "Static Hearts"
+        ]
+      },
+      "playlist": {
+        "name": "Late Night Drive",
+        "purpose": "Music for relaxed evening drives",
+        "desired_mood": "Reflective, warm, slightly energetic",
+        "existing_artists": [
+          "The War on Drugs",
+          "Phoenix",
+          "M83"
+        ]
+      }
+    },
+    "questions": {
+      "is_appropriate": {
+        "type": "noul",
+        "instructions": "Would this band be an appropriate addition to the playlist based on its sound, mood, and purpose?"
+      },
+      "fit": {
+        "type": "score",
+        "instructions": "How well does the band's sound fit the playlist?",
+        "criteria": [
+          "Poor fit: the sound or mood conflicts with the playlist",
+          "Partial fit: some elements work, but the overall match is uneven",
+          "Strong fit: the sound and mood align well with the playlist",
+          "Excellent fit: the band strongly reinforces the playlist's intended experience"
+        ]
+      },
+      "reason": {
+        "type": "choice",
+        "instructions": "What is the main reason for the band's playlist fit?",
+        "criteria": {
+          "mood": "The band's emotional mood matches the playlist",
+          "sound": "The band's instrumentation and production match the playlist",
+          "artist_similarity": "The band is stylistically compatible with the existing artists",
+          "mismatch": "The band's style conflicts with the playlist"
+        }
+      }
+    }
   }
 ]

@@ -86,8 +86,15 @@ fs.writeFileSync(
 
 // Print the model's response to the console for easy viewing
 console.log(`model:       ${model}`);
-console.log(`department:  ${answers.department.choice} (confidence ${answers.department.confidence})`);
-console.log(`frustration: ${answers.frustration.score}`);
-console.log(`is_urgent:   ${answers.is_urgent.noul}`);
+for (const [name, question] of Object.entries(questions)) {
+  const answer = answers[name];
+  if (question.type === "choice") {
+    console.log(`${name}: ${answer.choice} (confidence ${answer.confidence})`);
+  } else if (question.type === "score") {
+    console.log(`${name}: ${answer.score}`);
+  } else {
+    console.log(`${name}: ${answer.noul}`);
+  }
+}
 console.log(`usage:       ${usage.input_tokens} in / ${usage.output_tokens} out`);
 console.log(`response:    ${responseTimeMs.toFixed(0)} ms`);

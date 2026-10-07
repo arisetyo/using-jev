@@ -39,16 +39,26 @@ with TypeSafeClient() as client:
     response = client.system_one(
         state=state_config["state"],
         questions={
-            "department": Choice(**state_config["questions"]["department"]),
-            "frustration": Score(**state_config["questions"]["frustration"]),
-            "is_urgent": Noul(**state_config["questions"]["is_urgent"]),
+            name: {
+                "choice": Choice,
+                "score": Score,
+                "noul": Noul,
+            }[question["type"]](
+                instructions=question["instructions"],
+                **({"criteria": question["criteria"]} if "criteria" in question else {}),
+            )
+            for name, question in state_config["questions"].items()
         },
     )
 
 response_time_ms = (time.perf_counter() - stopwatch_start) * 1000
 
-dept = response.choices["department"]
-print(f"department:  {dept.choice} (confidence {dept.confidence})")
-print(f"frustration: {response.scores['frustration'].score}")
-print(f"is_urgent:   {response.nouls['is_urgent'].noul}")
+for name, question in state_config["questions"].items():
+    if question["type"] == "choice":
+        answer = response.choices[name]
+        print(f"{name}: {answer.choice} (confidence {answer.confidence})")
+    elif question["type"] == "score":
+        print(f"{name}: {response.scores[name].score}")
+    else:
+        print(f"{name}: {response.nouls[name].noul}")
 print(f"response:    {response_time_ms:.0f} ms")
