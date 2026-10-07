@@ -1,42 +1,25 @@
 #!/usr/bin/env python3
-"""Usage: python jev_cli.py "message text" """
+"""Run Jev against the first state in the repository's states.json file."""
 
-import sys
+import json
 from pathlib import Path
 
 from dotenv import load_dotenv
 from typesafe_sdk import Choice, Noul, Score, TypeSafeClient
 
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+root = Path(__file__).resolve().parent.parent
+load_dotenv(root / ".env")
 
-state = " ".join(sys.argv[1:]) or (
-    "Hi, I've been trying to connect my Stripe account for 3 days and the "
-    "integration keeps failing. I'm losing sales. Please help ASAP."
-)
+with (root / "states.json").open(encoding="utf-8") as file:
+    state_config = json.load(file)[0]
 
 with TypeSafeClient() as client:
     response = client.system_one(
-        state=state,
+        state=state_config["state"],
         questions={
-            "department": Choice(
-                instructions="Which team should handle this",
-                criteria={
-                    "billing": "Payment or subscription issues",
-                    "technical": "Bugs or integration problems",
-                    "sales": "Pricing or account questions",
-                },
-            ),
-            "frustration": Score(
-                instructions="How frustrated the customer appears",
-                criteria=[
-                    "Calm, just stating facts",
-                    "Frustrated but civil",
-                    "Very angry, strong language",
-                ],
-            ),
-            "is_urgent": Noul(
-                instructions="The message conveys urgency or time-sensitivity",
-            ),
+            "department": Choice(**state_config["questions"]["department"]),
+            "frustration": Score(**state_config["questions"]["frustration"]),
+            "is_urgent": Noul(**state_config["questions"]["is_urgent"]),
         },
     )
 
