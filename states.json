@@ -116,5 +116,162 @@
         }
       }
     }
+  },
+  {
+    "state": "My dad's face is drooping on one side and his speech is slurred. He also can't lift his right arm. It started about 20 minutes ago. He says he's fine and just tired, but I'm scared. What should we do?",
+    "questions": {
+      "needs_immediate_action": {
+        "type": "noul",
+        "instructions": "Does the described situation require calling emergency services right now?"
+      },
+      "severity": {
+        "type": "score",
+        "instructions": "How severe is the medical situation described?",
+        "criteria": [
+          "Mild: minor symptoms that can be managed at home",
+          "Moderate: symptoms that should be seen by a doctor in the coming days",
+          "Serious: symptoms that need same-day medical attention",
+          "Life-threatening: symptoms that suggest an immediate risk to life or permanent harm"
+        ]
+      },
+      "care_level": {
+        "type": "choice",
+        "instructions": "What level of care is most appropriate for this person right now?",
+        "criteria": {
+          "call_emergency": "Call emergency services immediately",
+          "urgent_care": "Go to an urgent care clinic or emergency department today",
+          "gp_visit": "Book a regular appointment with a doctor",
+          "self_care": "Manage at home with rest and basic self-care"
+        }
+      }
+    }
+  },
+  {
+    "state": {
+      "community": {
+        "name": "Home Bakers Network",
+        "rules": [
+          "Be respectful to other members",
+          "No advertising or self-promotion outside the Marketplace thread",
+          "No medical or health claims presented as fact",
+          "Constructive criticism of recipes is welcome"
+        ]
+      },
+      "thread": {
+        "title": "My first sourdough loaf, any tips?",
+        "parent_post": "Baked this yesterday and the crumb came out pretty dense. Not sure what went wrong."
+      },
+      "comment": "Your starter is probably too young, give it another week. Also, I sell a starter kit that fixes this exact problem, check my profile for 20% off. And honestly, anyone who skips the autolyse step is just wasting flour."
+    },
+    "questions": {
+      "violates_rules": {
+        "type": "noul",
+        "instructions": "Does this comment violate any of the community's rules?"
+      },
+      "toxicity": {
+        "type": "score",
+        "instructions": "How hostile or disrespectful is the comment toward other members?",
+        "criteria": [
+          "None: friendly or neutral in tone",
+          "Mild: slightly dismissive or condescending, but still civil",
+          "Moderate: clearly disrespectful or insulting",
+          "Severe: abusive, threatening, or harassing"
+        ]
+      },
+      "violation_type": {
+        "type": "choice",
+        "instructions": "What is the most significant rule violation in this comment?",
+        "criteria": {
+          "none": "The comment follows all community rules",
+          "disrespect": "The comment is disrespectful to other members",
+          "self_promotion": "The comment advertises something outside the allowed thread",
+          "health_claims": "The comment presents medical or health claims as fact",
+          "off_topic": "The comment is unrelated to the thread"
+        }
+      }
+    }
+  },
+  {
+    "state": {
+      "job": {
+        "title": "Senior Backend Engineer",
+        "required_skills": [
+          "Python",
+          "PostgreSQL",
+          "AWS",
+          "REST API design"
+        ],
+        "minimum_experience_years": 5,
+        "domain": "Fintech payments"
+      },
+      "candidate": {
+        "summary": "Software engineer with 6 years of experience building data pipelines and internal tools for an e-commerce company. Strong in Python and SQL, with some AWS experience (S3, Lambda). Has built and maintained several internal REST APIs. Has not worked in financial services or handled payment systems.",
+        "current_title": "Software Engineer II"
+      }
+    },
+    "questions": {
+      "meets_requirements": {
+        "type": "noul",
+        "instructions": "Does the candidate meet the job's core requirements well enough to be invited to an interview?"
+      },
+      "match_strength": {
+        "type": "score",
+        "instructions": "How well does the candidate's background match the job?",
+        "criteria": [
+          "Weak match: major requirements are missing",
+          "Partial match: some requirements are met, but there are significant gaps",
+          "Strong match: most requirements are met, with minor gaps",
+          "Excellent match: all requirements are met and the background closely fits the role"
+        ]
+      },
+      "biggest_gap": {
+        "type": "choice",
+        "instructions": "What is the candidate's most significant gap relative to the job?",
+        "criteria": {
+          "none": "No meaningful gap",
+          "skills": "The candidate lacks one or more required technical skills",
+          "experience": "The candidate has fewer years of experience than required",
+          "seniority": "The candidate has not held roles at the level the job requires",
+          "domain": "The candidate has no background in the job's industry or domain"
+        }
+      }
+    }
+  },
+  {
+    "state": {
+      "business": "A software company specializing in health informatics and AI/ML for life sciences.",
+      "email": {
+        "from": "Jordan Blake <jordan@growthreach-partners.io>",
+        "subject": "Quick question about your clinical data platform",
+        "body": "Hi there, I came across your company and was impressed by your work in health informatics. We help software companies like yours book 15-20 qualified demos per month through done-for-you outbound campaigns. Do you have 15 minutes this week to chat? You can grab a time here: https://calendly.com/growthreach/intro. Best, Jordan"
+      }
+    },
+    "questions": {
+      "notify": {
+        "type": "noul",
+        "instructions": "Is this email a legitimate business inquiry or a message from an existing or prospective customer that the business owner should be alerted to right away? Marketing, promotional, and cold sales outreach from third parties should not trigger a notification."
+      },
+      "category": {
+        "type": "choice",
+        "instructions": "Which category best describes this email?",
+        "criteria": {
+          "customer": "A message from an existing or prospective customer about the company's products or services",
+          "business_inquiry": "A genuine inquiry about collaboration, partnership, research, hiring, or services from someone with a real interest in the company's work",
+          "marketing_promo": "Marketing, promotional, or cold sales outreach from a third party, including messages disguised as personal inquiries",
+          "automated_notification": "An automated message such as a receipt, shipping update, or system alert",
+          "other": "Anything that does not fit the categories above"
+        }
+      },
+      "promotional_likelihood": {
+        "type": "score",
+        "instructions": "How likely is it that this email is a promotional or bulk sales message rather than a genuine one-to-one message?",
+        "criteria": [
+          "Clearly personal or transactional, tied to a specific existing relationship or request",
+          "Probably genuine, but with some generic or promotional elements",
+          "Probably promotional, with generic wording or a templated sales pitch",
+          "Clearly promotional or bulk marketing"
+        ]
+      }
+    }
   }
 ]
