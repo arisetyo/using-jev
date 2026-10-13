@@ -273,5 +273,118 @@
         ]
       }
     }
+  },
+  {
+    "state": {
+      "title": "Checkout returns an error after payment",
+      "description": "Several customers report that the checkout page shows a payment error after they submit their card. The issue started after today's release. A workaround is available, but it requires support to enable it manually.",
+      "impact": {
+        "affected_customers": 18,
+        "revenue_at_risk": "High",
+        "workaround": "Support can enable the legacy checkout flow"
+      }
+    },
+    "questions": {
+      "priority": {
+        "type": "choice",
+        "instructions": "Which engineering priority should this incident receive based on customer impact, revenue risk, and the availability of a workaround?",
+        "criteria": {
+          "low": "Minor inconvenience with little customer or business impact",
+          "medium": "Meaningful impact, but most users have a reliable workaround",
+          "high": "Many users or important business activity is affected and the workaround is limited",
+          "critical": "Core business activity is broadly blocked with no practical workaround"
+        }
+      },
+      "severity": {
+        "type": "score",
+        "instructions": "How severe is the incident for the business?",
+        "criteria": [
+          "Minor: isolated issue with negligible consequences",
+          "Moderate: noticeable issue affecting some users",
+          "Major: substantial customer or revenue impact",
+          "Critical: widespread interruption of a core business function"
+        ]
+      },
+      "needs_escalation": {
+        "type": "noul",
+        "instructions": "Should this incident be escalated immediately to the on-call engineering lead?"
+      }
+    }
+  },
+  {
+    "state": {
+      "product": {
+        "name": "Focus Timer",
+        "description": "A desktop timer that blocks distracting websites during scheduled work sessions."
+      },
+      "feedback": "I love the timer, but I cannot use it for client work because it blocks our internal dashboard. Please let me add an allowlist for trusted sites."
+    },
+    "questions": {
+      "request_type": {
+        "type": "choice",
+        "instructions": "What kind of product request is this?",
+        "criteria": {
+          "bug": "The product is not working as designed",
+          "feature": "The user requests a new capability or option",
+          "usability": "The product works, but the experience is confusing or difficult",
+          "praise": "The user mainly expresses positive feedback without a request"
+        }
+      },
+      "customer_value": {
+        "type": "score",
+        "instructions": "How valuable would addressing this feedback be to users of the product?",
+        "criteria": [
+          "Low: useful only to a narrow or unusual situation",
+          "Medium: helpful to a noticeable group of users",
+          "High: solves a common workflow problem for many users",
+          "Very high: removes a major barrier to adopting or retaining the product"
+        ]
+      },
+      "is_actionable": {
+        "type": "noul",
+        "instructions": "Does the feedback contain a specific request that the product team can act on?"
+      }
+    }
+  },
+  {
+    "state": {
+      "documents": [
+        {
+          "title": "Security policy",
+          "text": "Employees must report suspected credential exposure to the security team immediately. Do not paste passwords or access tokens into tickets or chat."
+        },
+        {
+          "title": "Incident report",
+          "text": "A developer accidentally committed a cloud access token to a private repository. The token was removed two hours later, but repository access logs have not been reviewed yet."
+        }
+      ],
+      "task": "Decide what should happen next."
+    },
+    "questions": {
+      "requires_response": {
+        "type": "noul",
+        "instructions": "Does this incident require an immediate security response under the stated policy?"
+      },
+      "risk": {
+        "type": "score",
+        "instructions": "How serious is the security risk described by the incident?",
+        "criteria": [
+          "Low: no sensitive material was exposed and no follow-up is needed",
+          "Moderate: limited exposure with contained impact",
+          "High: sensitive credentials may be usable and require prompt containment",
+          "Critical: active or widespread compromise is plausible"
+        ]
+      },
+      "next_step": {
+        "type": "choice",
+        "instructions": "What is the most important immediate next step?",
+        "criteria": {
+          "none": "No immediate action is required",
+          "revoke": "Revoke or rotate the exposed credential",
+          "notify": "Notify the security team and affected stakeholders",
+          "investigate": "Review logs or evidence before taking containment action"
+        }
+      }
+    }
   }
 ]

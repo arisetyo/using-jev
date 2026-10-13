@@ -1,6 +1,6 @@
 # Jev examples
 
-Two small TypeSafe Jev examples are included:
+Ten small TypeSafe Jev examples are included:
 
 - [`javascript-via-API/jev-cli.js`](./javascript-via-API/jev-cli.js) uses the
   TypeSafe HTTP API directly.
@@ -31,11 +31,16 @@ npm install
 node jev-cli.js
 ```
 
-The JavaScript example analyzes the first state in `states.json`.
+The JavaScript example analyzes the first state in `states.json`. Pass a
+zero-based index to try another example:
 
 ```sh
-node jev-cli.js
+node jev-cli.js 7
 ```
+
+The examples cover support triage, playlist curation, quiz validation, medical
+triage, moderation, resume screening, email filtering, incident prioritization,
+product feedback, and security response.
 
 ## Python
 
