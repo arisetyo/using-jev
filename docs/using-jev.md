@@ -33,7 +33,7 @@ Calling the API (or the Python SDK) is a few lines of code and is not the intere
 
 ## Part 2: The example states
 
-The workspace holds seven examples in [`states.json`](../states.json). Each is an object with a `state` and a set of `questions`. The CLI in [`javascript-via-API/jev-cli.js`](../javascript-via-API/jev-cli.js) sends one of them to Jev and prints the answers. Real responses are recorded in [`example_results.md`](./example_results.md).
+The workspace holds ten examples in [`states.json`](../states.json). Each is an object with a `state` and a set of `questions`. The CLI in [`javascript-via-API/jev-cli.js`](../javascript-via-API/jev-cli.js) sends one of them to Jev and prints the answers. Real responses for the first seven examples are recorded in [`example_results.md`](./example_results.md).
 
 ### Reading the response: a short guide
 
@@ -201,17 +201,35 @@ Questions are written in `instructions` and `criteria`. The question IDs (`depar
 
 ---
 
+### Examples 8–10: Incident, product, and security workflows
+
+The last three states show how the same primitives apply outside message
+classification:
+
+| Example | State shape | Useful judgment |
+| --- | --- | --- |
+| 8. Incident prioritization | Incident details with impact and workaround | Route an incident to a priority and escalation path |
+| 9. Product feedback | Product metadata plus user feedback | Separate request type, customer value, and actionability |
+| 10. Security response | Policy and incident report as named documents | Decide whether to respond, assess risk, and select containment |
+
+These examples also demonstrate that policy and reference material belong in the
+state. Jev can interpret the relationship between the documents and the incident,
+while the application keeps the actual escalation, prioritization, and credential
+rotation rules in code.
+
+---
+
 ### Patterns across the examples
 
 | Pattern | Seen in |
 | --- | --- |
-| **Route** a request to the right handler | 1, 7 |
-| **Grade** along a described dimension | 1, 2, 3, 4, 5, 6, 7 |
+| **Route** a request to the right handler | 1, 7, 8, 9, 10 |
+| **Grade** along a described dimension | every example |
 | **Gate** with a yes/no probability | every example |
 | **Compare** two entities | 2, 6 |
 | **Verify** another system's output | 3 |
-| **Apply policy** supplied in the state | 5 |
-| **Explain** a decision with a `choice` reason | 2, 3, 5, 6, 7 |
+| **Apply policy** supplied in the state | 5, 10 |
+| **Explain** a decision with a `choice` reason | 2, 3, 5, 6, 7, 8, 9, 10 |
 
 Almost every example uses the same trio: a `noul` as the gate, a `score` for the degree, and a `choice` for the reason. You can reuse that trio for new problems.
 
